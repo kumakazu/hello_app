@@ -8,11 +8,16 @@ class PostsController<ApplicationController
   end
   
   def new
+    @post=Post.new
   end
   
-  def created
+  def create
     @post = Post.new(content: params[:content])
-    @post.save
-    redirect_to("/posts/index")
+    if @post.save
+    flash[:notice]="投稿を作成しました"
+      redirect_to("/posts/index")
+    else
+      render("posts/new")
+    end
   end
 end
