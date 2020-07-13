@@ -9,4 +9,10 @@ class PostsController<ApplicationController
   
   def new
   end
+  
+  def created
+    @post = Post.new(content: params[:content])
+    @post.save
+    redirect_to("/posts/index")
+  end
 end
