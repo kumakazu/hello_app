@@ -1,17 +1,16 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
 <div class="main users-index">
   <div class="container">
     <h1 class="users-heading">ユーザー一覧</h1>
-    <!-- 以下の<% %>を使ってeach文を追加してください -->
+    <!-- 以下の<% %>を使ってeach文を追加 -->
     <% @users.each do |user| %>
       <div class="users-index-item">
         <div class="user-right">
-          <!-- 以下の<%= %>を使ってユーザー名を表示してください -->
-          <%= user.name %>
+          <!-- 以下の<%= %>を使ってユーザー名を表示 -->
+          <!-- 以下のユーザー名を、ユーザー詳細ページへのリンクに書き換え<%= user.name %> -->
+          <%= link_to(user.name, "/users/#{user.id}") %>
         </div>
       </div>
-    <!-- 以下の<% %>を使ってeach文のendを追加してください -->
+    <!-- 以下の<% %>を使ってeach文のendを追加 -->
     <% end %>
   </div>
 </div>
