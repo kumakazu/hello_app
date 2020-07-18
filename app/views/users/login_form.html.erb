@@ -1,0 +1,23 @@
+<div class="main users-new">
+  <div class="container">
+    <div class="form-heading">ログイン</div>
+    <div class="form users-form">
+      <div class="form-body">
+        <!-- error表示 -->
+        <% if @error_message %>
+          <div class="form-error">
+            <%= @error_message %>
+          </div>
+        <% end %>
+        <!-- form_tagメソッドを追加 -->
+        <%= form_tag("/login") do %>
+          <p>メールアドレス</p>
+          <input name="email" value="<%= @email %>">  <!-- name属性を追加 rails側で受け止める為 value属性を追加 初期値を入れる為-->
+          <p>パスワード</p>
+          <input type="password" name="password" value="<%= @password %>"><!-- name属性を追加 rails側で受け止める為 value属性を追加 初期値を入れる為 -->
+          <input type="submit" value="ログイン">
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
