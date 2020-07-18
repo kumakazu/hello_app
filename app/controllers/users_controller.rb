@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user, {only: [:index, :show, :edit, :update]} #ログアウト中の制限
+  before_action :forbid_login_user, {only: [:new, :create, :login_form, :login]} #ログイン中の制限
+  before_action :ensure_correct_user, {only: [:edit, :update]} #直接編集に行けないようにする# ensure_correct_userを定義
   def index
     @users = User.all
   end
@@ -15,9 +18,13 @@ class UsersController < ApplicationController
     @user = User.new(
       name: params[:name],
       email: params[:email],
-      image_name: "default_use3.jpg"
+      image_name: "default_use3.jpg",
+       # params[:password]をnewメソッドの引数に追加
+      password: params[:password]
       )
     if @user.save
+      # 登録されたユーザーのidを変数sessionに代入 ユーザー登録時にログイン状態に
+      session[:user_id] = @user.id
       flash[:notice] = "ユーザー登録が完了しました"
       redirect_to("/users/#{@user.id}")
     else
@@ -70,6 +77,19 @@ class UsersController < ApplicationController
       @email = params[:email]
       @password = params[:password]
       render("users/login_form")
+    end
+  end
+  
+  def logout
+    session[:user_id] = nil
+    flash[:notice] = "ログアウトしました"
+    redirect_to("/login")
+  end
+  
+  def ensure_correct_user
+    if @current_user.id != params[:id].to_i
+      flash[:notice] = "権限がありません"
+      redirect_to("/posts/index")
     end
   end
 end
