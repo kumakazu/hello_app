@@ -4,6 +4,10 @@
     <!-- 以下の<% %>を使ってeach文を追加 -->
     <% @users.each do |user| %>
       <div class="users-index-item">
+        <div class="user-left">
+          <!-- <img>タグを用いて、プロフィール画像を表示 -->
+          <img src="<%= "/user_images/#{user.image_name}" %>">
+        </div>
         <div class="user-right">
           <!-- 以下の<%= %>を使ってユーザー名を表示 -->
           <!-- 以下のユーザー名を、ユーザー詳細ページへのリンクに書き換え<%= user.name %> -->
