@@ -1,4 +1,5 @@
 class User < ApplicationRecord
-  validates :name, {presence: true}
-  validates :email, {presence: true, uniqueness: true}
+users_index_show_new_edit_update
+    validates :name, {presence: true}
+    validates :email, {presence: true, uniqueness: true}
 end
