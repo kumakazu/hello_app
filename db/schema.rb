@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+users_index_show_new_edit_update
 ActiveRecord::Schema.define(version: 20200715122611) do
+
 
   create_table "posts", force: :cascade do |t|
     t.text     "content"
