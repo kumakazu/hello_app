@@ -46,4 +46,30 @@ class UsersController < ApplicationController
       render("users/edit")
     end
   end
+  
+  def login_form
+  end
+  
+  def login
+    # 入力内容と一致するユーザーを取得し、変数@userに代入
+    @user = User.find_by(
+      email: params[:email],
+      password: params[:password]
+    )
+    # @userが存在するかどうかを判定するif文を作成
+    if @user
+      # ユーザーを保持する為のsession機能追加
+      session[:user_id] = @user.id
+      flash[:notice] = "ログインしました"
+      redirect_to("/posts/index")
+    else
+       # @error_messageを定義
+      @error_message = "メールアドレスまたはパスワードが間違っています"
+      
+      # @emailと@passwordを定義
+      @email = params[:email]
+      @password = params[:password]
+      render("users/login_form")
+    end
+  end
 end

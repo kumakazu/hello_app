@@ -10,12 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+users_login
+ActiveRecord::Schema.define(version: 20200718002506) do
 add_users_image
 ActiveRecord::Schema.define(version: 20200717013606) do
 users_index_show_new_edit_update
 ActiveRecord::Schema.define(version: 20200715122611) do
 
 
+master
 
   create_table "posts", force: :cascade do |t|
     t.text     "content"
@@ -29,6 +32,7 @@ ActiveRecord::Schema.define(version: 20200715122611) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "image_name"
+    t.string   "password"
   end
 
 end
