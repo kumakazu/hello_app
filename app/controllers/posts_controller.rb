@@ -8,6 +8,8 @@ class PostsController<ApplicationController
   def show
     @post=Post.find_by(id: params[:id])
     @user = @post.user
+    # いいねの数を表示する為に変数を定義する
+    @likes_count = Like.where(post_id: @post.id).count
   end
   
   def new

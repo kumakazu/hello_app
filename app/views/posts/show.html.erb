@@ -17,10 +17,16 @@
       
       <!-- ログインしているユーザーがその投稿にいいねしたデータが存在する場合と言うif文 -->
       <% if Like.find_by(user_id: @current_user.id, post_id: @post.id) %>
-        いいね！済み
+        <%= link_to( "/likes/#{@post.id}/destroy", {method: "post"}) do %>
+          <span class="fa fa-heart like-btn-unlike"></span>
+        <% end %>
       <% else %>
-        いいね！していません
+        <%= link_to("/likes/#{@post.id}/create", {method: "post"}) do %>
+          <span class="fa fa-heart like-btn"></span>
+        <% end %>
       <% end %>
+        <!-- 変数@likes_countを定義したのでHTMLで表示 -->
+      <%= @likes_count %>
       
       <!-- 投稿者のみに編集、削除ができるようにする -->
       <% if @post.user_id == @current_user.id %>

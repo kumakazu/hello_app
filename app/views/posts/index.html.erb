@@ -11,7 +11,8 @@
             <!-- link_toメソッドを用いて、ユーザー詳細ページへのリンクを作成 -->
             <%= link_to(post.user.name, "/users/#{post.user.id}") %>
           </div>
-        <%= link_to(post.content, "/posts/#{post.id}") %>
+          <%= link_to(post.content, "/posts/#{post.id}") %>
+        </div>
       </div>
     <% end %>
   </div>
